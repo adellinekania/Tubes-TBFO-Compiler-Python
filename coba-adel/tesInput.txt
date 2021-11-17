@@ -1,0 +1,3 @@
+if not true:
+    a+=1
+    raise ("as_dfg")
