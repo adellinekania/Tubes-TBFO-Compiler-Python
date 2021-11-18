@@ -2,8 +2,6 @@ import re
 
 chomskyGrammar = {}
 
-# LoadCNF sama readInputFile coma copas dari kak mk
-
 def LoadCNF(modelPath):
     file = open(modelPath).read()
     rawRules = file.split('\n')
@@ -19,10 +17,6 @@ def LoadCNF(modelPath):
                 chomskyGrammar.update({C[j] : [A]})
             else :
                 chomskyGrammar[C[j]].append(A)
-    #print(chomskyGrammar)
-    # for chom in chomskyGrammar:
-    #     print(chomskyGrammar[chom])
-    # {'SS': ['S', 'S0'], 'VARA1': ['S', 'S0'], ... }
 
 def readInputFile(filePath) :
     # INi masii rada kurang pas, kayak di print dia jadi ga bisa ngeprint () karena bakal ke split
@@ -75,20 +69,24 @@ def inputToExistCYKVar(inputText):
                 inputText[i] = 'string'
     return inputText
 
+def insertTable(tableSet, rules):
+    for rule in rules:
+        tableSet.add(rule)
+
 # masih duplicate isinya
 def makeCYKTable(inputText, chomskyGrammar):
-    cykTable = [[[] for j in range(i)] for i in range(len(inputText),0,-1)]
+    cykTable = [[set() for j in range(i)] for i in range(len(inputText),0,-1)]
 
     for i in range(len(inputText)):
         if inputText[i] in chomskyGrammar:
-            cykTable[0][i] += chomskyGrammar[inputText[i]]
+            insertTable(cykTable[0][i], chomskyGrammar[inputText[i]])
         else:
             if re.match(r'[A-z_][A-z0-9_]*', inputText[i]):
-                cykTable[0][i] += chomskyGrammar['variable']
+                insertTable(cykTable[0][i], chomskyGrammar['variable'])
             if re.match(r'[0-9]*', inputText[i]) :
-                cykTable[0][i] += chomskyGrammar['number']
+                insertTable(cykTable[0][i], chomskyGrammar['number'])
             if re.match(r'[A-z0-9]*', inputText[i]):
-                cykTable[0][i] += chomskyGrammar['string']
+                insertTable(cykTable[0][i], chomskyGrammar['string'])
     
     print(cykTable)
 
@@ -101,8 +99,8 @@ def makeCYKTable(inputText, chomskyGrammar):
                         for p1 in cykTable[i-k-1][j+k+1]:
                             p2 = p + p1
                             #print(p2)
-                            if p2 in chomskyGrammar:
-                                cykTable[i][j] += chomskyGrammar[p2]
+                            if p2 in chomskyGrammar and chomskyGrammar[p2] != cykTable[i][j]:
+                                insertTable(cykTable[i][j], chomskyGrammar[p2])
                 #print("AAAAAAAAAAAAAAAAAAAAAAAAAAA")
     return cykTable
 
