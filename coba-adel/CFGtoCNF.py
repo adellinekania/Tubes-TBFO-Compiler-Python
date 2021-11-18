@@ -124,12 +124,11 @@ def UNIT(productions, variables):
 		i+=1
 	return result
 
-
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
 		modelPath = str(sys.argv[1])
 	else:
-		modelPath = 'cfg1.txt'
+		modelPath = 'cfg.txt'
 	
 	K, V, Productions = helper.loadModel( modelPath )
     

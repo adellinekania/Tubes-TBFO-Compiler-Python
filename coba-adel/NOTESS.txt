@@ -1,0 +1,10 @@
+CFG:
+else nya masii ngaco
+yang belum :
+- None 
+- continue
+- with
+- as
+- pass
+- break
+- raise

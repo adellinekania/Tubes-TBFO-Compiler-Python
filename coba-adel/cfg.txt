@@ -1,0 +1,33 @@
+Terminals:
+variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import : True False is not while if else def return class
+Variables:
+S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT OPCOMP BOOLEAN OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS
+Productions:
+S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WHILE | IF | DEF | CLASS; 
+VAR -> variable | VCLASS;
+VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | VCLASS;
+STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
+NUMBER -> NUMBER OPARITH NUMBER | number | number OPARITH number | number * * number | number / / number | number > > number | number < < number ( NUMBER );
+OPARITH -> + | - | * | / | %;
+OPCOMP -> < | > | !;
+OP -> OPARITH | & | ^ | OPCOMP;
+PRINT -> print ( VAL );
+FORHEAD -> for VAR in range ( VRANGE ) | for VAR in VAL;
+VRANGE -> VAL , VAL | VAL | VAL , VAL , VAL;
+FUNCTION -> VAR ( VFUNCTION ) | FUNCTION ( FUNCTION );
+VFUNCTION -> VFUNCTION , VFUNCTION | VAL;
+FOR -> FORHEAD : S;
+BOOLEAN -> True | False;
+OPLOGIC -> and | or;
+OPIDENTITY -> is | is not | in;
+IMPORT -> from VAR import VAR | from VAR import * | import VAR;
+WHILE -> while COMP : S;
+COMP -> VAR | ( COMP ) | COMP OPLOGIC COMP | VAR OPCOMP VAL | VAR OPCOMP = VAL | VAR = = VAL | not VAR | VAR OPIDENTITY VAL;
+IF -> if COMP : S | IF ELIF | IF ELSE;
+ELSE -> else : S;
+ELIF -> else if COMP : S | ELIF ELIF | ELIF ELSE;
+DEF -> def VAR ( VDEF ) : S return VRET | def VAR ( VDEF ) : S | def VAR ( ) : S return VRET | def VAR ( ) : S;
+VDEF -> VDEF , VDEF | variable | VAR = VAL;
+VRET -> VRET , VRET | variable | COMP | ( VRET );
+CLASS -> class VAR : S | class ( VAR ) : S;
+VCLASS -> VCLASS . VCLASS | variable
