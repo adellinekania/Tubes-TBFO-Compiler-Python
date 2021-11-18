@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 
 chomskyGrammar = {}
 
@@ -112,7 +113,10 @@ cnfPath = 'cnf.txt'
 
 LoadCNF(cnfPath)
 print(chomskyGrammar)
-inputText = readInputFile('tesInput.txt')
+script_location = Path(__file__).absolute().parent
+file_location = script_location/'tesInput.txt'
+inputText = readInputFile(file_location)
+# inputText = readInputFile('tesInput.txt')
 print(inputText)
 
 cykTable = makeCYKTable(inputText, chomskyGrammar)
