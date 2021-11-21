@@ -1,3 +1,27 @@
-a = 10
-if (a==5):
-    raise TypeError("a")
+'''
+This is multili  
+  ne comment (        %=  5 +5 Obviously)
+            ''' """
+            This is another :) <3 
+"""
+while a>0:
+    if(a==3):
+        break
+    print(a)
+    a-=1
+from pp import haha
+import ppp
+def __init__ (haha='haha', hhh, dttd=5) :
+    print(haha)
+    if p == 5:
+        haha = ppppn(4, lllln(p, 3))
+    if p != 5:
+        print('haha >> 5 + 5 <<|')
+        print("me + you = ? '5 + hello'")
+    elif p >= 7:
+        pq -= jhjh
+    elif p >= 7:
+        pq = False
+    else:
+        hhh += 10
+    return (pp, (gdgd == 3), gg)

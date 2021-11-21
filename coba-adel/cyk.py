@@ -29,9 +29,11 @@ class CykParser:
                     self.chomskyGrammar.update({options[j]: [origin]})
         f.close()
 
-    def __string_analyzer(self): ## Validasi string
+    def __string_analyzer(self): ## Validasi string dan comment
         stack_like = []
         current_line = 0
+        mutliline_comment = ['\'\'\'[\S\n\t ]+?\'\'\'', '\"\"\"[\S\n\t ]+?\"\"\"']
+        self.contents = re.sub('|'.join(mutliline_comment), '', self.contents)
         for line in self.contents.split("\n"):
             current_line += 1
             for char in line:
@@ -48,7 +50,7 @@ class CykParser:
         if not self.err_line:
             new_input = []
             for line in self.contents.split("\n"):
-                new_input.append(re.sub('\".*\"', '"string"', line))
+                new_input.append(re.sub('\"(.*?)\"|\'(.*?)\'', '"string"', line))
             self.validString = True
             self.contents = "\n".join(new_input)
         else:
