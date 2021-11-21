@@ -29,7 +29,7 @@ RAISE -> raise ( VAL ) ;
 BREAK -> break;
 PASS -> pass;
 CONTINUE -> continue;
-IF -> if COMP : S | IF ELIF | IF ELSE | IF CONTINUE | IF BREAK | IF PASS | IF RAISE;
+IF -> if COMP : S | IF ELIF | IF ELSE | IF RAISE;
 ELSE -> else : S;
 ELIF -> else if COMP : S | ELIF ELIF | ELIF ELSE;
 DEF -> def VAR ( VDEF ) : S return VRET | def VAR ( VDEF ) : S | def VAR ( ) : S return VRET | def VAR ( ) : S;
