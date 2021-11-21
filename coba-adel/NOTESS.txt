@@ -1,3 +1,4 @@
 CFG:
 else nya masii ngaco
 raise belum bisa make Exception atau typeError
+tiba2 != gaa bisaaa, cfgnya udah benerr gatau sala dimanaa, sebelum versi inii masii bisaa
