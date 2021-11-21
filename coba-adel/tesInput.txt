@@ -2,7 +2,7 @@ from pp import haha
 import ppp
 def __init__ (haha='haha', hhh, dttd=5) :
     print(haha)
-    if p == 5:
+    if p != 5:
         haha = ppppn(4, lllln(p, 3))
     if p == 5:
         print('haha')

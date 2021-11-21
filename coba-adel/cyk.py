@@ -50,7 +50,7 @@ class CykParser:
             for line in self.contents.split("\n"):
                 new_input.append(re.sub('\".*\"', '"string"', line))
             self.validString = True
-            self.inputText = "\n".join(new_input)
+            self.contents = "\n".join(new_input)
         else:
             self.validString = False
 
@@ -63,7 +63,7 @@ class CykParser:
         contents = self.contents.split()
         f.close()
 
-        delimiters = [':', ',', '=', '<', '>', '>=', '<=', '==', '!=', r'\+',
+        delimiters = [':', ',', '=', '<', '>', '!', r'\+',
                       '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\'\'\'', r'\'', r'\"']
 
         format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
