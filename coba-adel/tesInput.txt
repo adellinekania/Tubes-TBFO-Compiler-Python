@@ -1,25 +1,3 @@
-from pp import haha
-import ppp
-def __init__ (haha='haha', hhh, dttd=5) :
-    print(haha)
-    if p != 5:
-        haha = ppppn(4, lllln(p, 3))
-    if p == 5:
-        print('haha')
-    else if p >= 7:
-        pq -= jhjh
-    else if p >= 7:
-        pq = False
-    else:
-        hhh += 10
-    return (pp, (gdgd == 3), gg)
-
-def haha():
-    pp %= 5
-
-while i < 5:
-    for i in range(0, len(hhh), 8):
-        if p == 5:
-            print('haha')
-        else if p >= 7:
-            pq = jhjh
+a = 10
+if (a==5):
+    raise TypeError("a")

@@ -1,12 +1,12 @@
-S -> S S | VAR A1 | VAR B1 | VAR C1 | S3 R1 | FORHEAD A11 | M3 B11 | M3 C11 | L3 VAR | L3 D11 | M3 E11 | J3 F11 | H3 G11 | F3 O11 | IF ELIF | IF ELSE | IF RAISE | D3 R11 | D3 S11 | D3 T11 | D3 U11 | B3 A21 | B3 B21 | continue | break | pass
+S -> S S | VAR A1 | VAR B1 | VAR C1 | S3 R1 | FORHEAD A11 | M3 B11 | M3 C11 | L3 VAR | L3 D11 | M3 E11 | J3 F11 | H3 G11 | F3 P11 | IF ELIF | IF ELSE | C3 S11 | C3 T11 | C3 U11 | C3 W11 | A3 B21 | A3 C21 | continue | break | pass | G3 N11 | G3 O11
 Z3 -> =
 A1 -> Z3 VAL
 B1 -> OPARITH B2
 B2 -> Z3 STRING
 C1 -> OPARITH C2
 C2 -> Z3 NUMBER
-VAR -> variable | VCLASS C21 | variable
-VAL -> ARRAY | VCLASS  | variable | STRING D1 | X3 E1 | W3 F1 | X3 G1 | W3 H1 | W3 I1 | X3 J1 | U3 K1 | NUMBER L1 | number | NUMBER M1 | NUMBER N1 | NUMBER O1 | NUMBER P1 | NUMBER Q1 | VAR X1 | FUNCTION Y1 | True | False | None | VCLASS C21 | variable
+VAR -> variable | VCLASS D21 | variable
+VAL -> ARRAY | VCLASS  | variable | STRING D1 | X3 E1 | W3 F1 | X3 G1 | W3 H1 | W3 I1 | X3 J1 | U3 K1 | NUMBER L1 | number | NUMBER M1 | NUMBER N1 | NUMBER O1 | NUMBER P1 | NUMBER Q1 | VAR X1 | FUNCTION Y1 | True | False | None | VCLASS D21 | variable
 STRING -> STRING D1 | X3 E1 | W3 F1 | X3 G1 | W3 H1 | W3 I1 | X3 J1 | U3 K1
 D1 -> OPARITH STRING
 Y3 -> string
@@ -67,7 +67,7 @@ S5 -> VRANGE T3
 T1 -> VAR T2
 T2 -> OPIDENTITY VAL
 P3 -> ,
-VRANGE -> VAL U1 | VAL W1 | ARRAY | VCLASS  | variable | VCLASS C21 | variable | STRING D1 | X3 E1 | W3 F1 | X3 G1 | W3 H1 | W3 I1 | X3 J1 | U3 K1 | NUMBER L1 | number | NUMBER M1 | NUMBER N1 | NUMBER O1 | NUMBER P1 | NUMBER Q1 | VAR X1 | FUNCTION Y1 | True | False | None
+VRANGE -> VAL U1 | VAL W1 | ARRAY | VCLASS  | variable | VCLASS D21 | variable | STRING D1 | X3 E1 | W3 F1 | X3 G1 | W3 H1 | W3 I1 | X3 J1 | U3 K1 | NUMBER L1 | number | NUMBER M1 | NUMBER N1 | NUMBER O1 | NUMBER P1 | NUMBER Q1 | VAR X1 | FUNCTION Y1 | True | False | None
 U1 -> P3 VAL
 W1 -> P3 W2
 W2 -> VAL W3
@@ -76,7 +76,7 @@ X1 -> U3 X2
 X2 -> VFUNCTION T3
 Y1 -> U3 Y2
 Y2 -> FUNCTION T3
-VFUNCTION -> VFUNCTION Z1 | ARRAY | VCLASS  | variable | VCLASS C21 | variable | STRING D1 | X3 E1 | W3 F1 | X3 G1 | W3 H1 | W3 I1 | X3 J1 | U3 K1 | NUMBER L1 | number | NUMBER M1 | NUMBER N1 | NUMBER O1 | NUMBER P1 | NUMBER Q1 | VAR X1 | FUNCTION Y1 | True | False | None
+VFUNCTION -> VFUNCTION Z1 | ARRAY | VCLASS  | variable | VCLASS D21 | variable | STRING D1 | X3 E1 | W3 F1 | X3 G1 | W3 H1 | W3 I1 | X3 J1 | U3 K1 | NUMBER L1 | number | NUMBER M1 | NUMBER N1 | NUMBER O1 | NUMBER P1 | NUMBER Q1 | VAR X1 | FUNCTION Y1 | True | False | None
 Z1 -> P3 VFUNCTION
 O3 -> :
 FOR -> FORHEAD A11
@@ -111,7 +111,7 @@ F17 -> O3 S
 WHILE -> H3 G11
 G11 -> COMP G12
 G12 -> O3 S
-COMP -> U3 H11 | COMP I11 | VAR J11 | VAR K11 | VAR L11 | N3 VAR | VAR M11 | variable | VCLASS C21 | variable
+COMP -> U3 H11 | COMP I11 | VAR J11 | VAR K11 | VAR L11 | N3 VAR | VAR M11 | variable | VCLASS D21 | variable
 H11 -> COMP T3
 I11 -> OPLOGIC COMP
 J11 -> OPCOMP VAL
@@ -120,63 +120,66 @@ K12 -> Z3 VAL
 L11 -> Z3 L12
 L12 -> Z3 VAL
 M11 -> OPIDENTITY VAL
-RAISE -> G3 N11
-N11 -> U3 N12
-N12 -> VAL N13
-N13 -> T3 
+EXCP -> Exception | TypeError | SyntaxError | RuntimeError
+RAISE -> G3 N11 | G3 O11
+N11 -> EXCP N12
+N12 -> U3 N13
+N13 -> STRING T3
+O11 -> U3 O12
+O12 -> STRING T3
 BREAK -> break
 PASS -> pass
 CONTINUE -> continue
 F3 -> if
-IF -> F3 O11 | IF ELIF | IF ELSE | IF RAISE
-O11 -> COMP O12
-O12 -> O3 S
-E3 -> else
-ELSE -> E3 P11
-P11 -> O3 S
+IF -> F3 P11 | IF ELIF | IF ELSE
+P11 -> COMP P12
+P12 -> O3 S
+E3 -> elif
 ELIF -> E3 Q11 | ELIF ELIF | ELIF ELSE
-Q11 -> F3 Q12
-Q12 -> COMP Q13
-Q13 -> O3 S
-D3 -> def
-C3 -> return
-DEF -> D3 R11 | D3 S11 | D3 T11 | D3 U11
-R11 -> VAR R12
-R12 -> U3 R13
-R13 -> VDEF R14
-R14 -> T3 R15
-R15 -> O3 R16
-R16 -> S R17
-R17 -> C3 VRET
+Q11 -> COMP Q12
+Q12 -> O3 S
+D3 -> else
+ELSE -> D3 R11
+R11 -> O3 S
+C3 -> def
+B3 -> return
+DEF -> C3 S11 | C3 T11 | C3 U11 | C3 W11
 S11 -> VAR S12
 S12 -> U3 S13
 S13 -> VDEF S14
 S14 -> T3 S15
-S15 -> O3 S
+S15 -> O3 S16
+S16 -> S S17
+S17 -> B3 VRET
 T11 -> VAR T12
 T12 -> U3 T13
-T13 -> T3 T14
-T14 -> O3 T15
-T15 -> S T16
-T16 -> C3 VRET
+T13 -> VDEF T14
+T14 -> T3 T15
+T15 -> O3 S
 U11 -> VAR U12
 U12 -> U3 U13
 U13 -> T3 U14
-U14 -> O3 S
-VDEF -> VDEF W11 | variable | VAR X11
-W11 -> P3 VDEF
-X11 -> Z3 VAL
-VRET -> VRET Y11 | variable | U3 Z11 | U3 H11 | COMP I11 | VAR J11 | VAR K11 | VAR L11 | N3 VAR | VAR M11 | variable | VCLASS C21 | variable
-Y11 -> P3 VRET
-Z11 -> VRET T3
-B3 -> class
-CLASS -> B3 A21 | B3 B21
-A21 -> VAR A22
-A22 -> O3 S
-B21 -> U3 B22
-B22 -> VAR B23
-B23 -> T3 B24
-B24 -> O3 S
-VCLASS -> VCLASS C21 | variable
-C21 -> . VCLASS
-S0 -> S S | VAR A1 | VAR B1 | VAR C1 | S3 R1 | FORHEAD A11 | M3 B11 | M3 C11 | L3 VAR | L3 D11 | M3 E11 | J3 F11 | H3 G11 | F3 O11 | IF ELIF | IF ELSE | IF RAISE | D3 R11 | D3 S11 | D3 T11 | D3 U11 | B3 A21 | B3 B21 | continue | break | pass
+U14 -> O3 U15
+U15 -> S U16
+U16 -> B3 VRET
+W11 -> VAR W12
+W12 -> U3 W13
+W13 -> T3 W14
+W14 -> O3 S
+VDEF -> VDEF X11 | variable | VAR Y11
+X11 -> P3 VDEF
+Y11 -> Z3 VAL
+VRET -> VRET Z11 | variable | U3 A21 | U3 H11 | COMP I11 | VAR J11 | VAR K11 | VAR L11 | N3 VAR | VAR M11 | variable | VCLASS D21 | variable
+Z11 -> P3 VRET
+A21 -> VRET T3
+A3 -> class
+CLASS -> A3 B21 | A3 C21
+B21 -> VAR B22
+B22 -> O3 S
+C21 -> U3 C22
+C22 -> VAR C23
+C23 -> T3 C24
+C24 -> O3 S
+VCLASS -> VCLASS D21 | variable
+D21 -> . VCLASS
+S0 -> S S | VAR A1 | VAR B1 | VAR C1 | S3 R1 | FORHEAD A11 | M3 B11 | M3 C11 | L3 VAR | L3 D11 | M3 E11 | J3 F11 | H3 G11 | F3 P11 | IF ELIF | IF ELSE | C3 S11 | C3 T11 | C3 U11 | C3 W11 | A3 B21 | A3 C21 | continue | break | pass | G3 N11 | G3 O11

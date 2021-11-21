@@ -1,9 +1,9 @@
 Terminals:
-variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import as with open : True False None is not while if else def return class break pass continue raise
+variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError
 Variables:
-S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE
+S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE EXCP
 Productions:
-S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | CONTINUE | BREAK | PASS;
+S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | CONTINUE | BREAK | PASS | RAISE;
 VAR -> variable | VCLASS;
 VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS ;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
@@ -25,13 +25,14 @@ IMPORT -> from VAR import VAR | from VAR import * | import VAR | import VAR as V
 WITH -> with open ( VAL ) as VAR : S;
 WHILE -> while COMP : S;
 COMP -> VAR | ( COMP ) | COMP OPLOGIC COMP | VAR OPCOMP VAL | VAR OPCOMP = VAL | VAR = = VAL | not VAR | VAR OPIDENTITY VAL;
-RAISE -> raise ( VAL ) ;
+EXCP -> Exception | TypeError | SyntaxError | RuntimeError;
+RAISE -> raise EXCP ( STRING ) | raise ( STRING );
 BREAK -> break;
 PASS -> pass;
 CONTINUE -> continue;
-IF -> if COMP : S | IF ELIF | IF ELSE | IF RAISE;
+IF -> if COMP : S | IF ELIF | IF ELSE;
+ELIF -> elif COMP : S | ELIF ELIF | ELIF ELSE;
 ELSE -> else : S;
-ELIF -> else if COMP : S | ELIF ELIF | ELIF ELSE;
 DEF -> def VAR ( VDEF ) : S return VRET | def VAR ( VDEF ) : S | def VAR ( ) : S return VRET | def VAR ( ) : S;
 VDEF -> VDEF , VDEF | variable | VAR = VAL;
 VRET -> VRET , VRET | variable | COMP | ( VRET );
