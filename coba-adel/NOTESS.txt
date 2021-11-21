@@ -1,7 +1,3 @@
 CFG:
 else nya masii ngaco
-masih ngaco kalo abis if langsung break pass continue raise, harus ada operasi atau print
-yang belum :
-- None
-- with
-- as
+raise belum bisa make Exception atau typeError

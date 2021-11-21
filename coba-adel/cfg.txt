@@ -1,11 +1,11 @@
 Terminals:
-variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import : True False is not while if else def return class break pass continue raise
+variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import as with open : True False None is not while if else def return class break pass continue raise
 Variables:
-S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT OPCOMP BOOLEAN OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE
+S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE
 Productions:
-S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WHILE | IF | DEF | CLASS;
+S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | CONTINUE | BREAK | PASS;
 VAR -> variable | VCLASS;
-VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | VCLASS;
+VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS ;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
 NUMBER -> NUMBER OPARITH NUMBER | number | number OPARITH number | number * * number | number / / number | number > > number | number < < number ( NUMBER );
 OPARITH -> + | - | * | / | %;
@@ -18,12 +18,14 @@ FUNCTION -> VAR ( VFUNCTION ) | FUNCTION ( FUNCTION );
 VFUNCTION -> VFUNCTION , VFUNCTION | VAL;
 FOR -> FORHEAD : S;
 BOOLEAN -> True | False;
+NONE -> None;
 OPLOGIC -> and | or;
 OPIDENTITY -> is | is not | in;
-IMPORT -> from VAR import VAR | from VAR import * | import VAR;
+IMPORT -> from VAR import VAR | from VAR import * | import VAR | import VAR as VAR | from VAR import VAR as VAR;
+WITH -> with open ( VAL ) as VAR : S;
 WHILE -> while COMP : S;
 COMP -> VAR | ( COMP ) | COMP OPLOGIC COMP | VAR OPCOMP VAL | VAR OPCOMP = VAL | VAR = = VAL | not VAR | VAR OPIDENTITY VAL;
-RAISE -> raise ( VAL ) | raise ( );
+RAISE -> raise ( VAL ) ;
 BREAK -> break;
 PASS -> pass;
 CONTINUE -> continue;
