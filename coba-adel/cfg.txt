@@ -3,7 +3,7 @@ variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from i
 Variables:
 S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE EXCP
 Productions:
-S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | CONTINUE | BREAK | PASS | RAISE;
+S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS;
 VAR -> variable | VCLASS;
 VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS ;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
@@ -30,7 +30,7 @@ RAISE -> raise EXCP ( STRING ) | raise ( STRING );
 BREAK -> break;
 PASS -> pass;
 CONTINUE -> continue;
-IF -> if COMP : S | IF ELIF | IF ELSE;
+IF -> if COMP : S | IF ELIF | IF ELSE | IF CONTINUE | if COMP : CONTINUE | IF BREAK | if COMP : BREAK | IF PASS | if COMP : PASS | | IF RAISE | if COMP : RAISE; 
 ELIF -> elif COMP : S | ELIF ELIF | ELIF ELSE;
 ELSE -> else : S;
 DEF -> def VAR ( VDEF ) : S return VRET | def VAR ( VDEF ) : S | def VAR ( ) : S return VRET | def VAR ( ) : S;
