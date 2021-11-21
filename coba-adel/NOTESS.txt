@@ -1,10 +1,7 @@
 CFG:
 else nya masii ngaco
+masih ngaco kalo abis if langsung break pass continue raise, harus ada operasi atau print
 yang belum :
-- None 
-- continue
+- None
 - with
 - as
-- pass
-- break
-- raise

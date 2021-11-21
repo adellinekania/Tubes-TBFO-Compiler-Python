@@ -1,6 +1,7 @@
 import os
 import re
 from str_valid import string_analyzer
+from pathlib import Path
 
 chomskyGrammar = {}
 
@@ -21,7 +22,10 @@ def loadGrammar(filePath):
 
 
 def readInputFile(filePath):
-    f = open(filePath, "r")
+    script_location = Path(__file__).absolute().parent
+    file_location = script_location/filePath
+    f = open(file_location, "r")
+    # f = open(filePath, "r")
     contents = f.read()
     str_valid, contents = string_analyzer(contents)
     if not str_valid:

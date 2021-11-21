@@ -1,9 +1,9 @@
 Terminals:
-variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import : True False is not while if else def return class
+variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import : True False is not while if else def return class break pass continue raise
 Variables:
-S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT OPCOMP BOOLEAN OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS
+S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT OPCOMP BOOLEAN OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE
 Productions:
-S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WHILE | IF | DEF | CLASS; 
+S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WHILE | IF | DEF | CLASS;
 VAR -> variable | VCLASS;
 VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | VCLASS;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
@@ -23,7 +23,11 @@ OPIDENTITY -> is | is not | in;
 IMPORT -> from VAR import VAR | from VAR import * | import VAR;
 WHILE -> while COMP : S;
 COMP -> VAR | ( COMP ) | COMP OPLOGIC COMP | VAR OPCOMP VAL | VAR OPCOMP = VAL | VAR = = VAL | not VAR | VAR OPIDENTITY VAL;
-IF -> if COMP : S | IF ELIF | IF ELSE;
+RAISE -> raise ( VAL ) | raise ( );
+BREAK -> break;
+PASS -> pass;
+CONTINUE -> continue;
+IF -> if COMP : S | IF ELIF | IF ELSE | IF CONTINUE | IF BREAK | IF PASS | IF RAISE;
 ELSE -> else : S;
 ELIF -> else if COMP : S | ELIF ELIF | ELIF ELSE;
 DEF -> def VAR ( VDEF ) : S return VRET | def VAR ( VDEF ) : S | def VAR ( ) : S return VRET | def VAR ( ) : S;

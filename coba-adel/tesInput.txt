@@ -1,3 +1,4 @@
-if not true:
-    a+=1
-    print ("as  5++ << || or  >>= _dfg")
+while true:
+    if a==4:
+        print("yey")
+        break
