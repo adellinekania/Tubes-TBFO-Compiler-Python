@@ -2,6 +2,7 @@ import os
 import re
 from str_valid import string_analyzer
 from pathlib import Path
+import itertools
 
 chomskyGrammar = {}
 
@@ -14,10 +15,10 @@ def loadGrammar(filePath):
         options = res.replace(" ", "").removesuffix("\n").split('|')
         for j in range(len(options)):
             value = chomskyGrammar.get(options[j])
-            if (value == None):
-                chomskyGrammar.update({options[j]: [origin]})
-            else:
+            if (value):
                 chomskyGrammar[options[j]].append(origin)
+            else:
+                chomskyGrammar.update({options[j]: [origin]})
     f.close()
 
 
@@ -25,7 +26,6 @@ def readInputFile(filePath):
     script_location = Path(__file__).absolute().parent
     file_location = script_location/filePath
     f = open(file_location, "r")
-    # f = open(filePath, "r")
     contents = f.read()
     str_valid, contents = string_analyzer(contents)
     if not str_valid:
@@ -33,22 +33,17 @@ def readInputFile(filePath):
     contents = contents.split()
     f.close()
 
-    result = contents
-
-    operators = [':', ',', '=', '<', '>', '>=', '<=', '==', '!=', r'\+',
+    delimiters = [':', ',', '=', '<', '>', '>=', '<=', '==', '!=', r'\+',
                  '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\'\'\'', r'\'', r'\"']
 
-    for operator in operators:
-        temporaryResult = []
-        for statement in result:
-            format = r"[A..z]*(" + operator + r")[A..z]*"
-            x = re.split(format, statement)
-            exclude = lambda x: x != ''
-            cleaned_list = filter(exclude, x)
-            temporaryResult += cleaned_list
-        result = temporaryResult
+    format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
+    contents = [re.split(format, content) for content in contents]
+    contents = list(itertools.chain(*contents))
+    
+    exclude = lambda x: x != ''
+    cleaned_contents = list(filter(exclude, contents))
 
-    return True, result
+    return True, cleaned_contents
 
 
 def insertTable(tableSet, rules):
