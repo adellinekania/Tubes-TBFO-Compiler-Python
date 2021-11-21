@@ -1,97 +1,133 @@
-import os
 import re
-from str_valid import string_analyzer
 from pathlib import Path
 import itertools
 
-chomskyGrammar = {}
 
+class CykParser:
 
-def loadGrammar(filePath):
-    f = open(filePath)
-    rules = f.readlines()
-    for i in range(len(rules)):
-        origin, res = rules[i].split(' -> ')
-        options = res.replace(" ", "").removesuffix("\n").split('|')
-        for j in range(len(options)):
-            value = chomskyGrammar.get(options[j])
-            if (value):
-                chomskyGrammar[options[j]].append(origin)
-            else:
-                chomskyGrammar.update({options[j]: [origin]})
-    f.close()
+    def __init__(self, cnfPath, testFile):
+        self.cnfPath = cnfPath
+        self.testFile = testFile
+        self.chomskyGrammar = {}
+        self.validString: bool
+        self.inputText: list
+        self.cykTable: list
+        self.contents: str
+        self.err_line = 0
 
+    def __loadGrammar(self): ## Load grammar CNF
+        f = open(self.cnfPath, "r")
+        rules = f.readlines()
+        for i in range(len(rules)):
+            origin, res = rules[i].split(' -> ')
+            options = res.replace(" ", "").removesuffix("\n").split('|')
+            for j in range(len(options)):
+                value = self.chomskyGrammar.get(options[j])
+                if (value):
+                    self.chomskyGrammar[options[j]].append(origin)
+                else:
+                    self.chomskyGrammar.update({options[j]: [origin]})
+        f.close()
 
-def readInputFile(filePath):
-    script_location = Path(__file__).absolute().parent
-    file_location = script_location/filePath
-    f = open(file_location, "r")
-    contents = f.read()
-    str_valid, contents = string_analyzer(contents)
-    if not str_valid:
-        return False, contents
-    contents = contents.split()
-    f.close()
+    def __string_analyzer(self): ## Validasi string
+        stack_like = []
+        current_line = 0
+        for line in self.contents.split("\n"):
+            current_line += 1
+            for char in line:
+                if char == '\'' or char == '\"':
+                    if len(stack_like) and stack_like[-1] == char:
+                        stack_like = stack_like[:-1]
+                    else:
+                        stack_like.append(char)
+            if len(stack_like):
+                self.err_line = current_line
+                break
+            stack_like.clear()
 
-    delimiters = [':', ',', '=', '<', '>', '>=', '<=', '==', '!=', r'\+',
-                 '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\'\'\'', r'\'', r'\"']
-
-    format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
-    contents = [re.split(format, content) for content in contents]
-    contents = list(itertools.chain(*contents))
-    
-    exclude = lambda x: x != ''
-    cleaned_contents = list(filter(exclude, contents))
-
-    return True, cleaned_contents
-
-
-def insertTable(tableSet, rules):
-    for rule in rules:
-        tableSet.add(rule)
-
-
-def makeCYKTable(inputText, chomskyGrammar):
-    cykTable = [[set() for _ in range(i)]
-                for i in range(len(inputText), 0, -1)]
-
-    for i in range(len(inputText)):
-        if inputText[i] in chomskyGrammar:
-            insertTable(cykTable[0][i], chomskyGrammar[inputText[i]])
+        if not self.err_line:
+            new_input = []
+            for line in self.contents.split("\n"):
+                new_input.append(re.sub('\".*\"', '"string"', line))
+            self.validString = True
+            self.inputText = "\n".join(new_input)
         else:
-            if re.match(r'[A-z_][A-z0-9_]*', inputText[i]):
-                insertTable(cykTable[0][i], chomskyGrammar['variable'])
-            if re.match(r'[0-9]*', inputText[i]):
-                insertTable(cykTable[0][i], chomskyGrammar['number'])
-            if re.match(r'[A-z0-9]*', inputText[i]):
-                insertTable(cykTable[0][i], chomskyGrammar['string'])
+            self.validString = False
 
-    for i in range(1, len(inputText)):
-        for j in range(len(inputText)-i):
-            for k in range(i):
-                for p in cykTable[k][j]:
-                    for p1 in cykTable[i-k-1][j+k+1]:
-                        p2 = p + p1
-                        if p2 in chomskyGrammar:
-                            insertTable(cykTable[i][j], chomskyGrammar[p2])
-    return cykTable
+    def __readInputFile(self): ## Tokenize input
+        f = open(self.testFile, "r")
+        self.contents = f.read()
+        self.__string_analyzer()
+        if not self.validString:
+            return
+        contents = self.contents.split()
+        f.close()
 
+        delimiters = [':', ',', '=', '<', '>', '>=', '<=', '==', '!=', r'\+',
+                      '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\'\'\'', r'\'', r'\"']
 
-def printCYKTable(cykTable):
-    for table in cykTable:
-        print(table)
+        format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
+        contents = [re.split(format, content) for content in contents]
+        contents = list(itertools.chain(*contents))
 
+        def exclude(x): return x != ''
+        cleaned_contents = list(filter(exclude, contents))
 
-cnfPath = '/cnf.txt'
-testPath = '/tesInput.txt'
+        self.validString = True
+        self.inputText = cleaned_contents
+
+    def __insertTable(self, level, position, key): ## Helper insert Tabel CYK
+        for rule in self.chomskyGrammar[key]:
+            self.cykTable[level][position].add(rule)
+
+    def __makeCYKTable(self): ## CYK Algorithm
+        inputText = self.inputText
+        insertTable = self.__insertTable
+        self.cykTable = [[set() for _ in range(i)]
+                         for i in range(len(inputText), 0, -1)]
+
+        for i in range(len(self.inputText)):
+            if inputText[i] in self.chomskyGrammar:
+                insertTable(0, i, self.inputText[i])
+            else:
+                if re.match(r'[A-z_][A-z0-9_]*', inputText[i]):
+                    insertTable(0, i, 'variable')
+                if re.match(r'[0-9]*', inputText[i]):
+                    insertTable(0, i, 'number')
+                if re.match(r'[A-z0-9]*', inputText[i]):
+                    insertTable(0, i, 'string')
+
+        for i in range(1, len(inputText)):
+            for j in range(len(inputText)-i):
+                for k in range(i):
+                    for p in self.cykTable[k][j]:
+                        for p1 in self.cykTable[i-k-1][j+k+1]:
+                            p2 = p + p1
+                            if p2 in self.chomskyGrammar:
+                                insertTable(i, j, p2)
+
+    def __printCYKTable(self):
+        for table in self.cykTable:
+            print(table)
+
+    def __result(self):
+        if self.cykTable and 'S' in self.cykTable[-1][-1]:
+            print("Accepted")
+        else:
+            print("Syntax error!")
+
+    def validate(self):
+        self.__loadGrammar()
+        self.__readInputFile()
+        if self.validString:
+            self.__makeCYKTable()
+            self.__printCYKTable()
+            self.__result()
+        else:
+            print(f"String error in line {self.err_line}")
+
 
 if __name__ == "__main__":
-    workdir = os.curdir
-    loadGrammar(workdir + cnfPath)
-    inputFile = workdir + testPath
-    valid, inputText = readInputFile(inputFile)
-    if valid:
-        cykTable = makeCYKTable(inputText, chomskyGrammar)
-        printCYKTable(cykTable)
-    else:
-        print(f"String error in line {inputText}")
+    workdir = Path(__file__).absolute().parent
+    cykParser = CykParser(workdir/"cnf.txt", workdir/"tesInput.txt")
+    cykParser.validate()
