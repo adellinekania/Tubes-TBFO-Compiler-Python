@@ -15,10 +15,11 @@ def __init__ (haha='haha', hhh, dttd=5) :
     print(haha)
     if p == 5:
         haha = ppppn(4, lllln(p, 3))
-    if p != 5:
+    elif p != 5:
         print('haha >> 5 + 5 <<|')
         print("me + you = ? '5 + hello'")
-    elif p >= 7:
+        print()
+    elif (p + 7) + 10 - hh >= k:
         pq -= jhjh
     elif p >= 7:
         pq = False

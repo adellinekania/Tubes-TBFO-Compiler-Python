@@ -1,6 +1,4 @@
 CFG:
-else nya masii ngaco
+else elif nya masii ngaco
 raise udah oke cuma Error nya dibatesin soalnya banyak
 return data (number, map, string, boolean), return didalam if
-print dan raise kosong ()
-comparison yg pake math (if x + 5 == 7:)
