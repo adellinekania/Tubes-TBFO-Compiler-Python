@@ -1,0 +1,14 @@
+from hello.py import hello.rb, yeye, zeze
+import snake as eel
+
+class object(class1, class2):
+    def __init__(self, me):
+        self.me = "HELLO"
+        
+    def printMe():
+        if self.me == "cape":
+            print()
+        elif self.me != None:
+            print("Hello, my name is...?")
+        else:
+            return

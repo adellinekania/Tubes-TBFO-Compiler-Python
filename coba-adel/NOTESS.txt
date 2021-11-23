@@ -1,4 +1,3 @@
 CFG:
-else elif coba cek lagi
+if elif else agak rusak
 raise udah oke cuma Error nya dibatesin soalnya banyak
-break continue conditional cuma boleh dalem loop
