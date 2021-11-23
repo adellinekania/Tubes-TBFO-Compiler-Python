@@ -32,7 +32,7 @@ RAISE -> raise EXCP ( STRING ) | raise ( STRING ) | raise ( );
 BREAK -> break;
 PASS -> pass;
 CONTINUE -> continue;
-IF -> if COMP : S | if COMP : IFRET | if COMP : S ELIF | if COMP : IFRET ELIF | if COMP : S ELSE | if COMP : IFRET ELSE | IF CONTINUE | if COMP : CONTINUE | IF BREAK | if COMP : BREAK | IF PASS | if COMP : PASS | IF RAISE | if COMP : RAISE;
+IF -> if COMP : S | if COMP : IFRET | if COMP : S ELIF | if COMP : IFRET ELIF | if COMP : S ELSE | if COMP : IFRET ELSE | IF CONTINUE | if COMP : CONTINUE | IF BREAK | if COMP : BREAK | IF RAISE | if COMP : RAISE;
 ELIF -> elif COMP : S | elif COMP : IFRET | elif COMP : S ELIF | elif COMP : IFRET ELIF | elif COMP : IFRET | ELSE | ELIF CONTINUE | elif COMP : CONTINUE | ELIF BREAK | elif COMP : BREAK | ELIF RAISE | elif COMP : RAISE;
 ELSE -> else : S | else : IFRET | else : CONTINUE | else : BREAK | else : RAISE;
 IFRET -> S return VRET | return VRET | S return | return;
