@@ -1,4 +1,4 @@
 CFG:
-else elif nya masii ngaco
+else elif coba cek lagi
 raise udah oke cuma Error nya dibatesin soalnya banyak
-return data (number, map, string, boolean), return didalam if
+break continue conditional cuma boleh dalem loop
