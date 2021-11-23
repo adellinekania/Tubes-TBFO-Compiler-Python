@@ -1,17 +1,18 @@
 Terminals:
-variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , . from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError
+variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , . from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError input
 Variables:
-S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT VIMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE IFRET DEF DEFV VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE EXCP COMPOPRT
+S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT VIMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE IFRET DEF DEFV VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE EXCP COMPOPRT INPUT
 Productions:
 S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | FUNCTION | PASS;
 VAR -> variable | VCLASS;
-VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS | VAR . VAR ;
+VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS | VAR . VAR | INPUT;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
 NUMBER -> NUMBER OPARITH NUMBER | number | number OPARITH number | number * * number | number / / number | number > > number | number < < number | ( NUMBER ) | number . number | . number | + number | - number;
 OPARITH -> + | - | * | / | %;
 OPCOMP -> < | > | !;
 OP -> OPARITH | & | ^ | OPCOMP;
 PRINT -> print ( VAL ) | print ( );
+INPUT -> input ( VAL ) | ( INPUT ) | input ( );
 FORHEAD -> for VAR in range ( VRANGE ) | for VAR in VAL;
 VRANGE -> VAL , VAL | VAL | VAL , VAL , VAL;
 FUNCTION -> VAR ( VFUNCTION ) | FUNCTION ( FUNCTION ) | VAR ( );
