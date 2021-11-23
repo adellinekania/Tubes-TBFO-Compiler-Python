@@ -104,8 +104,8 @@ J11 -> VAR J12
 J12 -> K4 J13
 J13 -> VAR J14
 J14 -> J4 VAR
-VIMPORT -> VAR K11 | VIMPORT, VAR | variable | VCLASS B31 | variable
-K11 -> O4 VAR
+VIMPORT -> VIMPORT K11 | variable | VCLASS B31 | variable
+K11 -> O4 VIMPORT
 WITH -> I4 L11
 L11 -> H4 L12
 L12 -> T4 L13

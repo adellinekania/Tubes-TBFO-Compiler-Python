@@ -9,7 +9,7 @@ while a>0:
         break
     print(a)
     a-=1
-from pp.ef import haha.he, yow
+from pp.ef import haha.he, yow, meh
 import ppp
 def __init__ (haha='haha', hhh, dttd=5) :
     print(haha)

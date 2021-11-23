@@ -22,7 +22,7 @@ NONE -> None;
 OPLOGIC -> and | or;
 OPIDENTITY -> is | is not | in;
 IMPORT -> from VAR import VIMPORT | from VAR import * | import VIMPORT | import VAR as VAR | from VAR import VAR as VAR;
-VIMPORT -> VAR | VAR , VAR | VIMPORT, VAR;
+VIMPORT -> VAR | VIMPORT , VIMPORT;
 WITH -> with open ( VAL ) as VAR : S;
 WHILE -> while COMP : S;
 COMP -> VAR | ( COMP ) | COMP OPLOGIC COMP | COMPOPRT OPCOMP COMPOPRT | COMPOPRT OPCOMP = COMPOPRT | COMPOPRT = = COMPOPRT | not VAR | not COMP | COMPOPRT OPIDENTITY COMPOPRT;
