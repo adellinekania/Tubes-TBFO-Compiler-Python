@@ -1,4 +1,3 @@
 CFG:
 else elif nya masii ngaco
 raise udah oke cuma Error nya dibatesin soalnya banyak
-return data (number, map, string, boolean), return didalam if

@@ -85,7 +85,6 @@ class CykParser:
 
     def __makeCYKTable(self): ## CYK Algorithm
         inputText = self.inputText
-        print(inputText)
         insertTable = self.__insertTable
         self.cykTable = [[set() for _ in range(i)]
                          for i in range(len(inputText), 0, -1)]
