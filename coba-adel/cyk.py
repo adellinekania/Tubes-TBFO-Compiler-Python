@@ -69,7 +69,7 @@ class CykParser:
         delimiters = [':', ',', '\.', '=', '<', '>', '!', r'\+',
                       '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\[', r'\]', r'\'\'\'', r'\'', r'\"']
 
-        format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
+        format = r"(" + "|".join(delimiters) + r")"
         contents = [re.split(format, content) for content in contents]
         contents = list(itertools.chain(*contents))
 
