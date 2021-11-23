@@ -1,3 +1,4 @@
 CFG:
-else elif nya masii ngaco
+elif else gatau dh bener atau blm
+break continue cuma bole kalo if nya dalam loop, tapi jadi lebih ribet
 raise udah oke cuma Error nya dibatesin soalnya banyak

@@ -32,5 +32,5 @@ def __init__ (haha='haha', hhh, dttd=5) :
         return True
     else:
         hhh += -.15
-        return 5
+        return
     return (pp, (gdgd == 3), gg)
