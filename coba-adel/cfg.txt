@@ -1,5 +1,5 @@
 Terminals:
-variable string number + - % * / & ^ > < ! = ( ) [ ] ' " print for in range , . from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError input
+variable string number + - % * / & ^ > < ! = ( ) [ ] ' " print for in range , . from import as with open : True False None is not while if elif else def return class break pass continue raise input
 Variables:
 S SLOOP VAR VAL STRING NUMBER ARRAY VARRAY INDEX OPARITH OP PRINT VPRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT VIMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF VIF IFLOOP VIFL ELIF VELIF VELIF ELIFLOOP ELSE VELSE VELSEL ELSELOOP IFRET DEF DEFV VDEF VRET CLASS ICLASS VCLASS BREAK PASS CONTINUE RAISE EXCP COMPOPRT INPUT
 Productions:
@@ -33,8 +33,7 @@ WITH -> with open ( VAL ) as VAR : S;
 WHILE -> while COMP : SLOOP;
 COMP -> VAR | ( COMP ) | COMP OPLOGIC COMP | COMPOPRT OPCOMP COMPOPRT | COMPOPRT OPCOMP = COMPOPRT | COMPOPRT = = COMPOPRT | not VAR | not COMP | COMPOPRT OPIDENTITY COMPOPRT;
 COMPOPRT -> COMPOPRT OPARITH COMPOPRT | VAL | VAL OPARITH VAL | VAL * * VAL | VAL / / VAL | VAL > > VAL | VAL < < VAL | ( COMPOPRT );
-EXCP -> Exception | TypeError | SyntaxError | RuntimeError;
-RAISE -> raise EXCP ( STRING ) | raise ( STRING ) | raise ( );
+RAISE -> raise VAR ( STRING ) | raise ( STRING ) | raise ( );
 BREAK -> break;
 PASS -> pass;
 CONTINUE -> continue;

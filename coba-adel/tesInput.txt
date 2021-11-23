@@ -29,4 +29,5 @@ def __init__ (haha='haha', hhh, dttd=5) :
         print(a[:5], b[:])
     else:
         hhh += 10
+        raise IDontKnowError("HAHAHA")
     return (pp, (gdgd == 3), gg)

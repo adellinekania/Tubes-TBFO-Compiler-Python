@@ -175,10 +175,9 @@ N22 -> OPCOMP VAL
 O21 -> OPCOMP O22
 O22 -> OPCOMP VAL
 P21 -> COMPOPRT S5
-EXCP -> Exception | TypeError | SyntaxError | RuntimeError
 C5 -> raise
 RAISE -> C5 Q21 | C5 R21 | C5 S21
-Q21 -> EXCP Q22
+Q21 -> VAR Q22
 Q22 -> T5 Q23
 Q23 -> STRING S5
 R21 -> T5 R22

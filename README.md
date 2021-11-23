@@ -32,7 +32,7 @@ This is a python compiler using Context-Free Grammar (CFG) which is then simplif
 | raise |
 
 ## Technologies Used
-- [Python 3.9.0](https://www.python.org/)
+- [Python 3.9.0](https://www.python.org/) (This version is the minimum requirement)
 ## How To Use
 
 
@@ -54,4 +54,10 @@ This is a python compiler using Context-Free Grammar (CFG) which is then simplif
   ```
   input.txt
   ```
+  or you can also supply arguments on the command line
+  ```
+  python cyk.py test.txt
+  (Write path to the file)
+  ```
+  the command depends on the python command your computer is using (py, python, python3)
 * DONE! this compiler will tell whether your input program compiles successfully or not

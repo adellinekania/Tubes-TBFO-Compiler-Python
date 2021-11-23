@@ -1,3 +1,2 @@
 CFG:
-if elif else agak rusak
-raise udah oke cuma Error nya dibatesin soalnya banyak
+pen bikin bonus tp gangerti
