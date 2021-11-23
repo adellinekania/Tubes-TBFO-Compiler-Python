@@ -1,18 +1,22 @@
 Terminals:
-variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , . from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError input
+variable string number + - % * / & ^ > < ! = ( ) [ ] ' " print for in range , . from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError input
 Variables:
-S SLOOP VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT VIMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF VIF IFLOOP VIFL ELIF VELIF VELIF ELIFLOOP ELSE VELSE VELSEL ELSELOOP IFRET DEF DEFV VDEF VRET CLASS ICLASS VCLASS BREAK PASS CONTINUE RAISE EXCP COMPOPRT INPUT
+S SLOOP VAR VAL STRING NUMBER ARRAY VARRAY INDEX OPARITH OP PRINT VPRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT VIMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF VIF IFLOOP VIFL ELIF VELIF VELIF ELIFLOOP ELSE VELSE VELSEL ELSELOOP IFRET DEF DEFV VDEF VRET CLASS ICLASS VCLASS BREAK PASS CONTINUE RAISE EXCP COMPOPRT INPUT
 Productions:
-S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | FUNCTION | PASS | RAISE;
-SLOOP -> SLOOP SLOOP | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | WITH | WHILE | IFLOOP | FUNCTION | PASS | RAISE | BREAK | CONTINUE;
+S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | INDEX | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | FUNCTION | PASS | RAISE;
+SLOOP -> SLOOP SLOOP | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | INDEX | PRINT | FOR | WITH | WHILE | IFLOOP | FUNCTION | PASS | RAISE | BREAK | CONTINUE;
 VAR -> variable | VCLASS;
-VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS | VAR . VAR | INPUT;
+VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS | VAR . VAR | INPUT | INDEX;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
 NUMBER -> NUMBER OPARITH NUMBER | number | number OPARITH number | number * * number | number / / number | number > > number | number < < number | ( NUMBER ) | number . number | . number | + number | - number;
+VARRAY -> VAL | VARRAY , VARRAY | ARRAY;
+ARRAY -> [ ] | [ VARRAY ] | ( ) | ( VARRAY );
+INDEX -> VAR [ NUMBER ] | VAR [ : ] | VAR [ : NUMBER ] | VAR [ NUMBER : ] | VAR [ NUMBER : NUMBER ];
 OPARITH -> + | - | * | / | %;
 OPCOMP -> < | > | !;
 OP -> OPARITH | & | ^ | OPCOMP;
-PRINT -> print ( VAL ) | print ( );
+VPRINT -> VAL | VPRINT , VPRINT;
+PRINT -> print ( VPRINT ) | print ( );
 INPUT -> input ( VAL ) | ( INPUT ) | input ( );
 FORHEAD -> for VAR in range ( VRANGE ) | for VAR in VAL;
 VRANGE -> VAL , VAL | VAL | VAL , VAL , VAL;

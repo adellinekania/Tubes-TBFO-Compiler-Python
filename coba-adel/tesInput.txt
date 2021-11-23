@@ -9,11 +9,13 @@ while a>0:
         break
     print(a)
     a-=1
-from pp import haha
-import ppp
+from pp.lol import haha, hihi, huhu
+import ppp.svdd
 def __init__ (haha='haha', hhh, dttd=5) :
     print(haha)
     if p == 5:
+        a = b.c.d(woy, woy, woy)
+        hello.da()
         haha = ppppn(4, lllln(p, 3))
     elif p != 5:
         print('haha >> 5 + 5 <<|')
@@ -23,6 +25,8 @@ def __init__ (haha='haha', hhh, dttd=5) :
         pq -= jhjh
     elif p >= 7:
         pq = False
+        a = [[5], [5, [5, (5, 5, [5])]]]
+        print(a[:5], b[:])
     else:
         hhh += 10
     return (pp, (gdgd == 3), gg)

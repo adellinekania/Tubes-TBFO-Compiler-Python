@@ -67,7 +67,7 @@ class CykParser:
         f.close()
 
         delimiters = [':', ',', '\.', '=', '<', '>', '!', r'\+',
-                      '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\'\'\'', r'\'', r'\"']
+                      '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\[', r'\]', r'\'\'\'', r'\'', r'\"']
 
         format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
         contents = [re.split(format, content) for content in contents]
