@@ -1,6 +1,7 @@
 import re
 from pathlib import Path
 import itertools
+import sys
 
 
 class CykParser:
@@ -65,7 +66,7 @@ class CykParser:
         contents = self.contents.split()
         f.close()
 
-        delimiters = [':', ',', '=', '<', '>', '!', r'\+',
+        delimiters = [':', ',', '\.', '=', '<', '>', '!', r'\+',
                       '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\'\'\'', r'\'', r'\"']
 
         format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
@@ -130,6 +131,10 @@ class CykParser:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        testPath = str(sys.argv[1])
+    else:
+        testPath = input("Path to test file: ")
     workdir = Path(__file__).absolute().parent
-    cykParser = CykParser(workdir/"cnf.txt", workdir/"tesInput.txt")
+    cykParser = CykParser(workdir/"cnf.txt", workdir/testPath)
     cykParser.validate()

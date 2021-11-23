@@ -1,27 +1,28 @@
 Terminals:
-variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError
+variable string number + - % * / & ^ > < ! = ( ) ' " print for in range , . from import as with open : True False None is not while if elif else def return class break pass continue raise Exception TypeError SyntaxError RuntimeError
 Variables:
-S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE EXCP COMPOPRT
+S VAR VAL STRING NUMBER OPARITH OP PRINT FORHEAD VRANGE FUNCTION VFUNCTION FOR IMPORT VIMPORT WITH OPCOMP BOOLEAN NONE OPLOGIC OPIDENTITY WHILE COMP IF ELIF ELSE IFRET DEF VDEF VRET CLASS VCLASS BREAK PASS CONTINUE RAISE EXCP COMPOPRT
 Productions:
-S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | PASS;
+S -> S S | VAR = VAL | VAR + = STRING | VAR OPARITH = NUMBER | PRINT | FOR | IMPORT | WITH | WHILE | IF | DEF | CLASS | FUNCTION | PASS;
 VAR -> variable | VCLASS;
-VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS ;
+VAL -> VAR | STRING | NUMBER | ARRAY | FUNCTION | BOOLEAN | NONE | VCLASS | VAR . VAR ;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
-NUMBER -> NUMBER OPARITH NUMBER | number | number OPARITH number | number * * number | number / / number | number > > number | number < < number | ( NUMBER );
+NUMBER -> NUMBER OPARITH NUMBER | number | number OPARITH number | number * * number | number / / number | number > > number | number < < number | ( NUMBER ) | number . number | . number | + number | - number;
 OPARITH -> + | - | * | / | %;
 OPCOMP -> < | > | !;
 OP -> OPARITH | & | ^ | OPCOMP;
 PRINT -> print ( VAL ) | print ( );
 FORHEAD -> for VAR in range ( VRANGE ) | for VAR in VAL;
 VRANGE -> VAL , VAL | VAL | VAL , VAL , VAL;
-FUNCTION -> VAR ( VFUNCTION ) | FUNCTION ( FUNCTION );
+FUNCTION -> VAR ( VFUNCTION ) | FUNCTION ( FUNCTION ) | VAR ( );
 VFUNCTION -> VFUNCTION , VFUNCTION | VAL;
 FOR -> FORHEAD : S;
 BOOLEAN -> True | False;
 NONE -> None;
 OPLOGIC -> and | or;
 OPIDENTITY -> is | is not | in;
-IMPORT -> from VAR import VAR | from VAR import * | import VAR | import VAR as VAR | from VAR import VAR as VAR;
+IMPORT -> from VAR import VIMPORT | from VAR import * | import VIMPORT | import VAR as VAR | from VAR import VAR as VAR;
+VIMPORT -> VAR | VIMPORT , VIMPORT;
 WITH -> with open ( VAL ) as VAR : S;
 WHILE -> while COMP : S;
 COMP -> VAR | ( COMP ) | COMP OPLOGIC COMP | COMPOPRT OPCOMP COMPOPRT | COMPOPRT OPCOMP = COMPOPRT | COMPOPRT = = COMPOPRT | not VAR | not COMP | COMPOPRT OPIDENTITY COMPOPRT;
@@ -30,12 +31,12 @@ EXCP -> Exception | TypeError | SyntaxError | RuntimeError;
 RAISE -> raise EXCP ( STRING ) | raise ( STRING ) | raise ( );
 BREAK -> break;
 PASS -> pass;
-CONTINUE -> continue;
-IF -> if COMP : S | IF ELIF | IF ELSE | IF CONTINUE | if COMP : CONTINUE | IF BREAK | if COMP : BREAK | IF RAISE | if COMP : RAISE; 
-ELIF -> elif COMP : S | ELIF ELIF | ELIF ELSE | ELIF CONTINUE | elif COMP : CONTINUE | ELIF BREAK | elif COMP : BREAK | ELIF RAISE | elif COMP : RAISE;
-ELSE -> else : S | else : CONTINUE | else : BREAK | else : RAISE;
+IF -> if COMP : S | if COMP : IFRET | IF ELIF | IF ELSE | IF CONTINUE | if COMP : CONTINUE | IF BREAK | if COMP : BREAK | IF PASS | if COMP : PASS | | IF RAISE | if COMP : RAISE; 
+ELIF -> elif COMP : S | elif COMP : IFRET | ELIF ELIF | ELIF ELSE | ELIF CONTINUE | elif COMP : CONTINUE | ELIF BREAK | elif COMP : BREAK | ELIF RAISE | elif COMP : RAISE;
+ELSE -> else : S | else : IFRET | else : CONTINUE | else : BREAK | else : RAISE;
+IFRET -> S return VRET | return VRET;
 DEF -> def VAR ( VDEF ) : S return VRET | def VAR ( VDEF ) : S | def VAR ( ) : S return VRET | def VAR ( ) : S;
 VDEF -> VDEF , VDEF | variable | VAR = VAL;
-VRET -> VRET , VRET | variable | COMP | ( VRET );
+VRET -> VRET , VRET | variable | COMP | ( VRET ) | NUMBER | BOOLEAN | STRING;
 CLASS -> class VAR : S | class ( VAR ) : S;
 VCLASS -> VCLASS . VCLASS | variable
