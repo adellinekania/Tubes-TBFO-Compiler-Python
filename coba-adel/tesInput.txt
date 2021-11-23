@@ -9,13 +9,16 @@ while a>0:
         break
     print(a)
     a-=1
-from pp import haha
+from pp.ef import haha.he, yow
 import ppp
 def __init__ (haha='haha', hhh, dttd=5) :
     print(haha)
-    if p == 5:
+    yey.yay.wow()
+    a = halo.hei(5, 5 ,'vvv')
+    b = b.a
+    if p == 5.5 + .5:
         haha = ppppn(4, lllln(p, 3))
-    elif p != 5:
+    elif p != -5:
         print('haha >> 5 + 5 <<|')
         print("me + you = ? '5 + hello'")
         print()
@@ -24,5 +27,5 @@ def __init__ (haha='haha', hhh, dttd=5) :
     elif p >= 7:
         pq = False
     else:
-        hhh += 10
+        hhh += -.15
     return (pp, (gdgd == 3), gg)

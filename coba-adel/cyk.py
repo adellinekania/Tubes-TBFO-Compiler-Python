@@ -66,7 +66,7 @@ class CykParser:
         contents = self.contents.split()
         f.close()
 
-        delimiters = [':', ',', '=', '<', '>', '!', r'\+',
+        delimiters = [':', ',', '\.', '=', '<', '>', '!', r'\+',
                       '-', r'\*', '/', r'\*\*', r'\(', r'\)', r'\'\'\'', r'\'', r'\"']
 
         format = r"[A..z]*(" + "|".join(delimiters) + r")[A..z]*"
@@ -85,6 +85,7 @@ class CykParser:
 
     def __makeCYKTable(self): ## CYK Algorithm
         inputText = self.inputText
+        print(inputText)
         insertTable = self.__insertTable
         self.cykTable = [[set() for _ in range(i)]
                          for i in range(len(inputText), 0, -1)]
