@@ -20,6 +20,7 @@ This is a python compiler using Context-Free Grammar (CFG) which is then simplif
 | `CFGtoCNF.py`       | Converter CFG to CNF                          |
 | `helper.py`              | Helper for converter                 |
 | `cyk.py`              | Main program               |
+| `fa.py`           | Finite Automata Implementation |
 
 
 ### Supported Syntax
@@ -28,8 +29,7 @@ This is a python compiler using Context-Free Grammar (CFG) which is then simplif
 | False | class | is | return | None | continue |
 | for | True | def | from | while | and |
 | not | with | as | elif | if | else |
-| or | import | pass | break |except | in |
-| raise |
+| or | import | pass | break | raise | in |
 
 ## Technologies Used
 - [Python 3.9.0](https://www.python.org/) (This version is the minimum requirement)
