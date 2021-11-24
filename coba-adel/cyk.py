@@ -33,8 +33,8 @@ class CykParser:
     def __string_analyzer(self): ## Validasi string dan comment
         stack_like = []
         current_line = 0
-        mutliline_comment = ['\'\'\'[\S\n\t ]+?\'\'\'', '\"\"\"[\S\n\t ]+?\"\"\"']
-        self.contents = re.sub('|'.join(mutliline_comment), '', self.contents)
+        comment = ['\'\'\'[\S\n\t ]+?\'\'\'', '\"\"\"[\S\n\t ]+?\"\"\"', '\#[^\n\r]*']
+        self.contents = re.sub('|'.join(comment), '', self.contents)
         for line in self.contents.split("\n"):
             current_line += 1
             for char in line:
@@ -112,7 +112,9 @@ class CykParser:
                                 insertTable(i, j, p2)
 
     def __printCYKTable(self):
-        for table in self.cykTable:
+        if len(self.cykTable) > 10:
+            print("...\n...")
+        for table in self.cykTable[-10:]:
             print(table)
 
     def __result(self):
