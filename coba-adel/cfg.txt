@@ -18,7 +18,7 @@ OP -> OPARITH | & | ^ | OPCOMP;
 VPRINT -> VAL | VPRINT , VPRINT;
 PRINT -> print ( VPRINT ) | print ( );
 INPUT -> input ( VAL ) | ( INPUT ) | input ( );
-FORHEAD -> for VAR in range ( VRANGE ) | for VAR in VAL;
+FORHEAD -> for VAR in range ( VRANGE ) | for VAR in VAL | for VAR , VAR in VAL;
 VRANGE -> VAL , VAL | VAL | VAL , VAL , VAL;
 FUNCTION -> VAR ( VFUNCTION ) | FUNCTION ( FUNCTION ) | VAR ( );
 VFUNCTION -> VFUNCTION , VFUNCTION | VAL;

@@ -2,7 +2,7 @@ import re
 from pathlib import Path
 import itertools
 import sys
-
+import fa
 
 class CykParser:
 
@@ -84,6 +84,7 @@ class CykParser:
             self.cykTable[level][position].add(rule)
 
     def __makeCYKTable(self): ## CYK Algorithm
+        FA = fa.FA
         inputText = self.inputText
         insertTable = self.__insertTable
         self.cykTable = [[set() for _ in range(i)]
@@ -93,7 +94,8 @@ class CykParser:
             if inputText[i] in self.chomskyGrammar:
                 insertTable(0, i, self.inputText[i])
             else:
-                if re.match(r'[A-z_][A-z0-9_]*', inputText[i]):
+                variable = FA(inputText[i])
+                if variable.readSymbol():
                     insertTable(0, i, 'variable')
                 if re.match(r'[0-9]*', inputText[i]):
                     insertTable(0, i, 'number')
