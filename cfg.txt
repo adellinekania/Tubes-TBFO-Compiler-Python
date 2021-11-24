@@ -21,7 +21,7 @@ INPUT -> input ( VAL ) | ( INPUT ) | input ( );
 FORHEAD -> for VAR in range ( VRANGE ) | for VAR in VAL | for VAR , VAR in VAL;
 VRANGE -> VAL , VAL | VAL | VAL , VAL , VAL;
 FUNCTION -> VAR ( VFUNCTION ) | FUNCTION ( FUNCTION ) | VAR ( );
-VFUNCTION -> VFUNCTION , VFUNCTION | VAL;
+VFUNCTION -> VFUNCTION , VFUNCTION | VAL | VAR = VAL;
 FOR -> FORHEAD : SLOOP;
 BOOLEAN -> True | False;
 NONE -> None;
@@ -55,6 +55,6 @@ DEF -> DEFV : S return VRET | DEFV : S return | DEFV : S;
 DEFV -> def VAR ( VDEF ) | def VAR ( );
 VDEF -> VDEF , VDEF | variable | VAR = VAL;
 VRET -> VRET , VRET | variable | COMP | ( VRET ) | NUMBER | BOOLEAN | STRING | NONE;
-ICLASS -> VAR | ICLASS , ICLASS;
+ICLASS -> VAR | ICLASS , ICLASS | VAR = VAR;
 CLASS -> class VAR : S | class VAR ( ICLASS ) : S;
 VCLASS -> VCLASS . VCLASS | VCLASS . FUNCTION | variable | FUNCTION

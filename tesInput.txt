@@ -1,34 +1,36 @@
 '''
-This is multili  
-  ne comment (        %=  5 +5 Obviously)
-            ''' """
-            This is another :) <3 
-"""
+This is multiline comment 
+Obviously
+''' """ This is another 
+    :)"""
 # this is oneline comment
-while a>0:
-    if(a==3):
-        break
-    print(a)
-    a-=1
 from pp.lol import haha, hihi, huhu
 import ppp.svdd
-def __init__ (haha='haha', hhh, dttd=5) :
-    print(haha)
-    if p == 5:
-        a = b.c.d(woy, woy, woy)
-        hello.da()
-        haha = ppppn(4, lllln(p, 3))
-    elif p != 5:
-        print('haha >> 5 + 5 <<|')
-        print("me + you = ? '5 + hello'")
-        print()
-    elif (p + 7) + 10 - hh >= k:
-        pq -= jhjh
-    elif p >= 7:
-        pq = False
-        a = [[5], [5, [5, (5, 5, [5])]]]
-        print(a[:5], b[:])
-    else:
-        hhh += 10
-        raise IDontKnowError("HAHAHA")
-    return (pp, (gdgd == 3), gg)
+class Panda:
+    def __init__ (self, haha='haha', hhh, dttd=5) :
+        haha = input("What is your nameee?")
+        print(haha)
+        if p == -5.22:
+            a = b.c.d(woy, woy, woy)
+            hello.da()
+            haha = ppppn(4, lllln(p, 3))
+        elif p != 5:
+            print('haha >> 5 + 5 <<|')
+            print("me + you = ? '5 + hello'")
+            pass
+        elif (p + 7.2) + .15 - hh >= k:
+            pq = False
+            a = [[5], [5, [5, (5, 5, [5])]]]
+            print(a[:5], b[:])
+        else:
+            hhh += 10
+            raise IDontKnowError("HAHAHA")
+        return (pp, (gdgd == 3), gg)
+    
+    def iterateMePlease(self):
+        while a>0:
+            for i in range(1,9,2):
+                me.call('62822..').get()
+                a = me.reply('Hello').getCredential
+panda = Panda(hhh='meh')
+panda.iterateMePlease()
